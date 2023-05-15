@@ -3,7 +3,7 @@ package com.HotelRating.Service.Impl;
 import com.HotelRating.Entity.Hotel;
 import com.HotelRating.Exception.ResourceNotFoundException;
 import com.HotelRating.Repository.HotelRepository;
-import com.HotelRating.Service.HotelServicve;
+import com.HotelRating.Service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,14 +11,14 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class HotelServiceImpl implements HotelServicve {
+public class HotelServiceImpl implements HotelService {
     @Autowired
     private HotelRepository hotelRepository;
 
     @Override
     public Hotel createhotel(Hotel hotel) {
-        String randid = UUID.randomUUID().toString();
-        hotel.setHotelid(randid);
+        String rrid = UUID.randomUUID().toString();
+        hotel.setHotelid(rrid);
         return hotelRepository.save(hotel);
     }
 
@@ -28,8 +28,8 @@ public class HotelServiceImpl implements HotelServicve {
     }
 
     @Override
-    public Hotel getsinglehotel(Hotel hotelId) {
-        return hotelRepository.findById(String.valueOf(hotelId))
-                .orElseThrow(() -> new ResourceNotFoundException("Givrn id not found"));
+    public Hotel getone(String id) {
+        return hotelRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Given Id Not Found"));
     }
 }

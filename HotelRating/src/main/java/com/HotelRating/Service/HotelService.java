@@ -4,14 +4,14 @@ import com.HotelRating.Entity.Hotel;
 
 import java.util.List;
 
-public interface HotelServicve {
+public interface HotelService {
+    //create hotel
 
-    //create
     Hotel createhotel(Hotel hotel);
 
     //get all hotels
     List<Hotel> getallhotels();
 
-    //get single hotel
-    Hotel getsinglehotel(Hotel hotelId);
+    //getsingle hotel
+    Hotel getone(String id);
 }

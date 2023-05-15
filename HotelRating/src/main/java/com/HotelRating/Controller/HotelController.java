@@ -11,28 +11,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/hotels")
+@RequestMapping("/Hotels")
 public class HotelController {
     @Autowired
     private HotelServiceImpl hotelService;
 
-
     //create hotel
     @PostMapping
-    public ResponseEntity<Hotel> createuser(@RequestBody Hotel hotel) {
-        Hotel hotel1 = hotelService.createhotel(hotel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(hotel1);
+    public ResponseEntity<Hotel> createhotels(@RequestBody Hotel hotel) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(hotelService.createhotel(hotel));
     }
 
     //get all hotels
     @GetMapping
-    public ResponseEntity<List<Hotel>> getallhotelss() {
+    public ResponseEntity<List<Hotel>> getall_hotels() {
         return ResponseEntity.ok(hotelService.getallhotels());
     }
 
-    //getsingle hotel
-    @GetMapping("/{Id}")
-    public ResponseEntity<Hotel> getonehotel(@PathVariable("Id") Hotel Id) {
-        return ResponseEntity.status(HttpStatus.OK).body(hotelService.getsinglehotel(Id));
+    @GetMapping("/{id}")
+    public ResponseEntity<Hotel> getonehotel(@PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK).body(hotelService.getone(id));
     }
 }
